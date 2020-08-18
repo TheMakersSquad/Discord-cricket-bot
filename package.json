@@ -1,14 +1,24 @@
 {
   "name": "cricketbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A discord bot to provide ball by ball score updates.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "The Makers",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.3.1"
-  }
+    "discord.js": "^12.3.1",
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMakersSquad/Discord-cricket-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheMakersSquad/Discord-cricket-bot/issues"
+  },
+  "homepage": "https://github.com/TheMakersSquad/Discord-cricket-bot#readme"
 }
