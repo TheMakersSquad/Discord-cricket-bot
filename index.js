@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
-const { prefix, token } = require("./config/config.json");
+const { prefix, token } = require("./config.json");
 
 const client = new Discord.Client();
 
@@ -12,7 +12,7 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   if (message.content.startsWith(`${prefix}detail`)) {
-    console.log(message.content);
+    console.log(message);
     var messageArray = message.content.split(" ");
     var matchID = parseInt(messageArray[1]);
     var param = messageArray[2] || "info";
@@ -27,7 +27,11 @@ client.on("message", (message) => {
           description: json["description"],
           series: json["series"][0]["series_name"],
           status: json["live"]["status"],
-          info: `${json["series"][0]["series_name"]} \n\n ${json["description"]} \n\n ${json["live"]["status"]}`,
+          info: `${json["series"][0]["series_name"]} \n\n ${
+            json["description"]
+          } \n\n ${json["live"]["status"]} \n \n ${
+            json["match"]["live_state"] || ""
+          }`,
         };
         message.channel.send(mappedParam[param]); // do something with JSON
       });
