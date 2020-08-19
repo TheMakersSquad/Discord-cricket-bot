@@ -20,7 +20,7 @@ client.on("message", (message) => {
 
 function handleMessage(message) {
   var messageArray = message.content.split(" ");
-  var inputCommand = messageArray[0].replace(`${prefix}`, "");
+  var inputCommand = messageArray[0].replace(`${prefix}`, "").toLowerCase();
   if (Commands.commands.hasOwnProperty(inputCommand)) {
     Runner.run(inputCommand, message);
   }
