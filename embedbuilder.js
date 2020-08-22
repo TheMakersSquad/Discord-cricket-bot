@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Utils = require("./utils");
 const prefix = Utils.prefix;
 
-exports.fetchedmatchdetails = (json) => {
+exports.fetchMatchDetails = (json) => {
   let fields = [];
   json["content"]["innings"].map((item) => {
     fields.push({
