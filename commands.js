@@ -36,13 +36,13 @@ exports.categories = {
     description: "Commands related to the cricket scores",
     commands: {
       current: {
-        display_names: ["today"],
-        pretty_name: "Today",
+        display_names: ["current"],
+        pretty_name: "Current",
         short_description: "",
         description:
           "Get the list of all completed, ongoing and scheduled matches for today",
-        syntax: "today",
-        example: "today",
+        syntax: "current",
+        example: "current",
         sudo: false,
         user_input: {
           accepts: false,
