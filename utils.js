@@ -2,46 +2,29 @@ const fetch = require("node-fetch");
 const { prefix, token } = require("./config.json");
 
 exports.getBattingBowlingTeam = (json) => {
-  var battingTeamId = json["live"]["batting"]["team_id"];
-  var bowlingTeamId = json["live"]["bowling"]["team_id"];
   var result = {
     battingTeam: null,
     bowlingTeam: null,
   };
-  for (i = 0; i < json["team"].length; i++) {
-    if (json["team"][i]["team_id"] == battingTeamId) {
-      result.battingTeam = json["team"][i];
-    } else if (json["team"][i]["team_id"] == bowlingTeamId) {
-      result.bowlingTeam = json["team"][i];
-    }
+  
+  if(json["header"]["matchEvent"]["competitors"][0]["isBatting"]){
+    result.battingTeam = json["header"]["matchEvent"]["competitors"][0];
+    result.bowlingTeam = json["header"]["matchEvent"]["competitors"][1];
   }
+  else{
+    result.battingTeam = json["header"]["matchEvent"]["competitors"][1];
+    result.bowlingTeam = json["header"]["matchEvent"]["competitors"][0];
+  }
+
+  
   return result;
 };
 
-exports.getTeamFromTeamID = (data, teamID) => {
-  // data = team object
-  for (i = 0; i < data.length; i++) {
-    if (data[i]["team_id"] == teamID) {
-      return data[i];
-    }
-  }
-};
 
-exports.getPlayerFromID = (data, playerID) => {
-  console.log(data.length);
-  for (i = 0; i < data.length; i++) {
-    people = data[i]["player"] ? data[i]["player"] : data[i]["squad"];
-    for (j = 0; j < people.length; j++) {
-      if (people[j]["player_id"] == playerID) {
-        return people[j];
-      }
-    }
-  }
-};
 
 exports.fetchMatchDetails = async function allMatches(matchID) {
   var data = await fetch(
-    `http://www.espncricinfo.com/matches/engine/match/${matchID}.json`
+    `https://hsapi.espncricinfo.com/v1/pages/match/scoreboard?lang=en&leagueId=8623&eventId=${matchID}`
   );
   var json = await data.json();
   return json;
@@ -54,3 +37,4 @@ exports.fetchAllMatchesToday = async function matchDetail() {
 };
 
 exports.prefix = prefix;
+exports.logoBaseUrl ="https://img1.hscicdn.com/image/upload/f_auto,t_h_100/" ; 

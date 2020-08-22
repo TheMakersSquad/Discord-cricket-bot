@@ -35,7 +35,7 @@ exports.categories = {
     display_name: "Cricket",
     description: "Commands related to the cricket scores",
     commands: {
-      today: {
+      current: {
         display_names: ["today"],
         pretty_name: "Today",
         short_description: "",

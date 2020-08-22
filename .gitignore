@@ -105,3 +105,6 @@ dist
 
 # Creds
 config.json
+
+#copy-pasta
+extra.js
