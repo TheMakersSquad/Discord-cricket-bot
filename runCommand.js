@@ -2,6 +2,7 @@ const { commands } = require("./commands");
 const Utils = require("./utils");
 const fetchAllmatchesToday = require("./embedbuilder");
 const Fetchedmatchdetails = require("./embedbuilder");
+const FetchScoreCard = require("./embedbuilder");
 const prefix = Utils.prefix;
 
 const funcs = {
@@ -10,9 +11,8 @@ const funcs = {
   },
 
   match: (message) => {
-    var messageArray = message.content.split(" ");
-    var matchID = parseInt(messageArray[1]);
-    var param = messageArray[2] || "info";
+    let messageArray = message.content.split(" ");
+    let matchID = parseInt(messageArray[1]);
     Utils.fetchMatchDetails(matchID).then((json) => {
       let details = Fetchedmatchdetails.fetchMatchDetails(json);
       message.channel.send(details);
@@ -25,6 +25,19 @@ const funcs = {
       message.channel.send(matchesToday);
     });
   },
+
+  scorecard: (message)=>{
+    let messageArray = message.content.split(" ");
+    let matchID = parseInt(messageArray[1]);
+    let param1 = parseInt(messageArray[2]);
+    let param2 = (messageArray[3]);
+    
+    Utils.fetchMatchDetails(matchID).then((json) => {
+      let matchScoreCard = FetchScoreCard.fetchScoreCard(json,  param1, param2);
+      message.channel.send(matchScoreCard);
+    });
+    
+  }
 };
 
 exports.run = (inputCommand, message) => {

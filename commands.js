@@ -63,6 +63,20 @@ exports.categories = {
           optional: true,
         },
       },
+      scorecard: {
+        display_names: ["scorecard"],
+        pretty_name: "Scorecard",
+        short_description: "",
+        description:
+          "Get Scorecard of Particular Match",
+        syntax: "current",
+        example: "current",
+        sudo: false,
+        user_input: {
+          accepts: false,
+          optional: false,
+        },
+      },
     },
   },
 };
